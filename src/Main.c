@@ -21,7 +21,7 @@ TransformedView tv;
 MVector Objects;
 SQuadTree TreeObjects;
 float Area = 100000.0f;
-Bool UseTree = False;
+char UseTree = False;
 
 void DrawElement(void* Element){
 	Pair* pair = (Pair*)Element;
