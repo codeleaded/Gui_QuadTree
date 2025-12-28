@@ -32,7 +32,9 @@ void DrawElement(void* Element){
 }
 
 void Setup(AlxWindow* w){
-	tv = TransformedView_New((Vec2){ 1.0f,1.0f });
+	tv = TransformedView_New((Vec2){ GetWidth(),GetHeight() });
+	TransformedView_Zoom(&tv,(Vec2){ 0.05f,0.05f });
+
     Objects = MVector_New(sizeof(AObject));
 	TreeObjects = SQuadTree_New((Rect){ { 0.0f,0.0f },{ Area,Area } },0);
 
@@ -94,6 +96,10 @@ void Update(AlxWindow* w){
 		RenderCStrSize(FStr.Memory,FStr.size,0.0f,0.0f,RED);
 		String_Free(&FStr);
 	}
+
+	String str = String_Format("O: %f,%f | Z: %f,%f",tv.Offset.x,tv.Offset.y,tv.Scale.x,tv.Scale.y);
+	RenderCStrSize(str.Memory,str.size,0.0f,GetAlxFont()->CharSizeY,WHITE);
+	String_Free(&str);
 }
 
 void Delete(AlxWindow* w){
